@@ -25,6 +25,7 @@ public:
 
   void save(ofstream& file);
   void load(ifstream& file);
+  
 private:
   int facultyID;
   string name;

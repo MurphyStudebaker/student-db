@@ -9,6 +9,7 @@ Faculty::Faculty()
   name = "";
   level = "";
   department = "";
+  numAdvisees = 0;
 }
 Faculty::~Faculty()
 {
@@ -17,7 +18,7 @@ Faculty::~Faculty()
 
 ostream& operator<<(ostream& os, const Faculty& f)
 {
-    os << f.facultyID << "   " << f.name << "   " << f.level << "   " << f.department;
+    os << f.facultyID << "   " << f.name << "   " << f.level << "   " << f.department << f.printAdvisees();
     return os;
 }
 
@@ -42,12 +43,14 @@ string Faculty::getDep()
 void Faculty::addAdvisee(int id)
 {
   advisees.addFront(id);
+  numAdvisees++;
 }
 bool Faculty::rmvAdvisee(int id)
 {
   if (advisees.find(id) != nullptr)
   {
     advisees.remove(advisees.find(id));
+    numAdvisees--;
     return true;
   } else {
     return false;
@@ -57,7 +60,7 @@ bool Faculty::rmvAdvisee(int id)
 void Faculty::printAdvisees() {
   advisees.printList();
 }
-/**The save method writes all member variables of an object out to the param fstream.
+/**The save method writes all member variables of an object out to the param fstream.*/
 void Faculty::save(ofstream& file)
 {
   file << facultyID << "\n";
@@ -65,10 +68,28 @@ void Faculty::save(ofstream& file)
   file << level << "\n";
   file << department << "\n";
   file << numAdvisees << "\n";
-  file <<
+  cout << "Saving " << numAdvisees << "advisee IDs" << endl;
+  for (int i=0; i < numAdvisees; ++i)
+  {
+    cout << "Number: " << i << endl;
+    file << advisees.front() << "\n";
+    advisees.removeFront();
+    cout << "Advisee saved and removed" << endl;
+  }
 }
 
 void Faculty::load(ifstream& file)
 {
-
-}*/
+  file >> facultyID;
+  file >> name;
+  file >> level;
+  file >> department;
+  file >> numAdvisees;
+  int number = 0;
+  for (int i=0; i < numAdvisees; ++i)
+  {
+    file >> number;
+    advisees.addFront(number);
+    cout << "Advisee loaded and added" << endl;
+  }
+}

@@ -1,11 +1,14 @@
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Student
 {
 public:
   Student();
+  Student(int id);
   ~Student();
+  friend ostream& operator<<(ostream& os, const Student& s);
 
   void setID(int i);
   void setAdvisor(int i);

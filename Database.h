@@ -1,6 +1,7 @@
 #include "Student.h"
 #include "Faculty.h"
 #include "BST.h"
+#include <iostream>
 using namespace std;
 /** Holds two BSTs as tables to store student and faculty data and methods to access
   * and update information */

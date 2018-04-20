@@ -7,27 +7,27 @@ using namespace std;
 /**A template implementation of a Binary Search Tree that holds a key seperate from
  	* the data of the node */
 template <class T>
-class TNode
+class Node
 {
 public:
-	TNode();
-	TNode(int k, T d);
-	~TNode();
+	Node();
+	Node(int k, T d);
+	~Node();
 
 	int key;
 	T data;
-	TNode<T> *left;
-	TNode<T> *right;
+	Node<T> *left;
+	Node<T> *right;
 };
 template <class T>
-TNode<T>::TNode()
+Node<T>::Node()
 {
 	key = 0;
 	left = NULL;
 	right = NULL;
 }
 template <class T>
-TNode<T>::TNode(int k, T d)
+Node<T>::Node(int k, T d)
 {
 	key = k;
 	data = d;
@@ -35,7 +35,7 @@ TNode<T>::TNode(int k, T d)
 	right = NULL;
 }
 template <class T>
-TNode<T>::~TNode()
+Node<T>::~Node()
 {
 	// build some character - may or may not be in the book!
 }
@@ -51,17 +51,17 @@ public:
 	bool contains(int k);
 	bool deleteNode(int k);
 
-	TNode<T> *getMin();
-	TNode<T> *getMax();
+	Node<T> *getMin();
+	Node<T> *getMax();
 
 	bool isEmpty();
 	int getSize();
-	void print(TNode<T> *node);
+	void print(Node<T> *node);
 	void printTree();
-	TNode<T>* getSuccessor(TNode<T> *d);
+	Node<T>* getSuccessor(Node<T> *d);
 
 private:
-	TNode<T> *root;
+	Node<T> *root;
 	unsigned int size;
 };
 template <class T>
@@ -82,7 +82,7 @@ void BST<T>::printTree()
 }
 
 template <class T>
-void BST<T>::print(TNode<T> *node) // In-order traversal
+void BST<T>::print(Node<T> *node) // In-order traversal
 {
 	if (node == NULL)
 	{
@@ -93,9 +93,9 @@ void BST<T>::print(TNode<T> *node) // In-order traversal
 	print(node->right);
 }
 template <class T>
-TNode<T>* BST<T>::getMax()
+Node<T>* BST<T>::getMax()
 {
-	TNode<T> *curr = root;
+	Node<T> *curr = root;
 	if (root == NULL)
 	{
 		return NULL;
@@ -110,15 +110,15 @@ TNode<T>* BST<T>::getMax()
 template <class T>
 void BST<T>::insert(int k, T data)
 {
-	TNode<T> *node = new TNode<T>(k, data);
-	if (root == NULL) // Empty TNode as root
+	Node<T> *node = new Node<T>(k, data);
+	if (root == NULL) // Empty Node as root
 	{
 		root = node;
 	}
 	else // Non-empty tree
 	{
-		TNode<T> *curr = root;
-		TNode<T> *parent = NULL;
+		Node<T> *curr = root;
+		Node<T> *parent = NULL;
 		// Now traverse and compare
 		while (true)
 		{
@@ -153,7 +153,7 @@ bool BST<T>::contains(int k)
 	}
 	else
 	{
-		TNode<T> *curr = root;
+		Node<T> *curr = root;
 		while (curr->key != k)
 		{
 			if (k < curr->key) // Go left
@@ -179,8 +179,8 @@ bool BST<T>::deleteNode(int k)
 	{
 		return false;
 	}
-	TNode<T> *current = root;
-	TNode<T> *parent = root;
+	Node<T> *current = root;
+	Node<T> *parent = root;
 	bool is_left;
 	// Look for node to be deleted
 	while (current->key != k)
@@ -255,7 +255,7 @@ bool BST<T>::deleteNode(int k)
 	// Two children
 	else
 	{
-		TNode<T> *successor = getSuccessor(current);
+		Node<T> *successor = getSuccessor(current);
 		if (current == root)
 		{
 			root = successor;
@@ -273,12 +273,12 @@ bool BST<T>::deleteNode(int k)
 	return true;
 }
 template <class T>
-TNode<T>* BST<T>::getSuccessor(TNode<T> *d) // d represents the node that we are going to delete
+Node<T>* BST<T>::getSuccessor(Node<T> *d) // d represents the node that we are going to delete
 {
 	/* traverse right once from d, and then go all the way left to find the successor */
-	TNode<T> *sp = d; // sp = successor's parent
-	TNode<T> *successor = d; // successor should be one right, all the way left
-	TNode<T> *current = d->right;
+	Node<T> *sp = d; // sp = successor's parent
+	Node<T> *successor = d; // successor should be one right, all the way left
+	Node<T> *current = d->right;
 	while (current != NULL)
 	{
 		sp = successor;

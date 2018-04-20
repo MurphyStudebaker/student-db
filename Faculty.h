@@ -7,6 +7,8 @@ public:
   Faculty();
   ~Faculty();
 
+  friend ostream& operator<<(ostream& os, const Faculty& s);
+
   void setID(int i);
   void setName(string n);
   void setLevel(string l);
@@ -17,13 +19,13 @@ public:
   string getDep();
 
   void addAdvisee(int id);
-  void rmvAdvisee(int id);
-
-  //override cout operator
+  bool rmvAdvisee(int id); //returns true if student found and successfully removed
+  void printAdvisees();
 private:
   int facultyID;
   string name;
   string level;
   string department;
-  TDLL<int> studentIDs;
+  TDLL<int> advisees;
+  int numAdvisees;
 };

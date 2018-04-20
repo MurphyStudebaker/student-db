@@ -1,5 +1,7 @@
 #include "TNode.h"
+#include <iostream>
 using namespace std;
+
 /** A template class of a Doubly Linked List */
 template <class T> class TDLL {
 private:
@@ -17,6 +19,8 @@ public:
   void removeBack();
   void add(TNode<T>* v, const T& e);
   void remove(TNode<T>* v);
+  TNode<T>* find(T val);
+  void printList();
 };
 template <class T>
 TDLL<T>::TDLL() {
@@ -64,8 +68,32 @@ void TDLL<T>::remove(TNode<T>* v) {
   delete v;
 }
 template <class T>
+TNode<T>* TDLL<T>::find(T val)
+{
+  TNode<T>* curr = head;
+  while (curr->next != nullptr)
+  {
+    if (curr->data == val)
+      return curr;
+    else {
+      curr = curr->next;
+    }
+  }
+  return nullptr; //value doe not exist in list
+}
+template <class T>
 void TDLL<T>::removeFront()
 { remove(head->next); }
 template <class T>
 void TDLL<T>::removeBack()
 { remove(tail->prev); }
+template <class T>
+void TDLL<T>::printList()
+{
+  TNode<T>* curr = head->next;
+  while (curr->next != nullptr)
+  {
+    cout << curr->data << endl;
+    curr = curr->next;
+  }
+}

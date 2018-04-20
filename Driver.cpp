@@ -1,12 +1,16 @@
 #include "BST.h"
+#include "Student.h"
+#include "Faculty.h"
 #include <string>
 using namespace std;
 
 int main ( )
 {
-  BST<int> tree;
-  tree.insert(30, 88);
-  tree.insert(45, 77);
-  tree.insert(15, 108);
-  tree.printTree();
+  Faculty prof;
+  prof.addAdvisee(7130124);
+  prof.addAdvisee(6875667);
+  prof.printAdvisees();
+  prof.rmvAdvisee(6875667);
+  cout << "-- Deleted --" << endl;
+  prof.printAdvisees();
 }

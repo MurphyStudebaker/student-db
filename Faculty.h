@@ -1,4 +1,5 @@
 #include <string>
+#include <fstream>
 #include "TDLL.h"
 using namespace std;
 
@@ -21,11 +22,14 @@ public:
   void addAdvisee(int id);
   bool rmvAdvisee(int id); //returns true if student found and successfully removed
   void printAdvisees();
+
+  void save(ofstream& file);
+  void load(ifstream& file);
 private:
   int facultyID;
   string name;
   string level;
   string department;
-  TDLL<int> advisees;
   int numAdvisees;
+  TDLL<int> advisees;
 };

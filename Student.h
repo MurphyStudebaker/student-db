@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Student
@@ -21,7 +22,9 @@ public:
   string getLevel();
   double getGPA();
 
-  //override cout operator
+  void save(ofstream& file);
+  void load(ifstream& file);
+
 private:
   int studentID;
   int advisorID;

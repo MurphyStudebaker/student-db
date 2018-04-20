@@ -2,6 +2,7 @@
 #include "Faculty.h"
 #include "BST.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 /** Holds two BSTs as tables to store student and faculty data and methods to access
   * and update information */
@@ -9,7 +10,7 @@ class Database {
 public:
   Database(); //read in from file
   ~Database(); //serialize to final
-
+/**
   int generateID(bool isStudent); //true if student, false if faculty
   void save();
   void undo();
@@ -28,9 +29,11 @@ public:
 
   void updateAdvisor(int student, int newAdvisor);
   void removeAdvisee(int student, int advisor);
-
+*/
 private:
-  BST<Student> studentTable;
-  BST<Faculty> facultyTable;
-  GenStack<BST<Student>> //stack of past tables somehow
+  fstream studentTable;
+  fstream facultyTable;
+  BST<Student> studentTree;
+  BST<Faculty> facultyTree;
+  //GenStack<BST<Student>> //stack of past tables somehow
 };

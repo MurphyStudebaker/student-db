@@ -53,6 +53,22 @@ bool Faculty::rmvAdvisee(int id)
     return false;
   }
 }
+
 void Faculty::printAdvisees() {
   advisees.printList();
 }
+/**The save method writes all member variables of an object out to the param fstream.
+void Faculty::save(ofstream& file)
+{
+  file << facultyID << "\n";
+  file << name << "\n";
+  file << level << "\n";
+  file << department << "\n";
+  file << numAdvisees << "\n";
+  file <<
+}
+
+void Faculty::load(ifstream& file)
+{
+
+}*/

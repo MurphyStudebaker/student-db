@@ -50,3 +50,21 @@ string Student::getLevel()
 { return level; }
 double Student::getGPA()
 { return gpa; }
+
+void Student::load(ifstream& file)
+{
+  file >> studentID;
+  file >> name;
+  file >> level;
+  file >> gpa;
+  file >> advisorID;
+}
+
+void Student::save(ofstream& file)
+{
+  file << studentID << "\n";
+  file << name << "\n";
+  file << level << "\n";
+  file << gpa << "\n";
+  file << advisorID << "\n";
+}

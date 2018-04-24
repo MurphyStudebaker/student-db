@@ -10,10 +10,11 @@ class Database {
 public:
   Database(); //read in from file
   ~Database(); //serialize to final
-/**
+
   int generateID(bool isStudent); //true if student, false if faculty
   void save();
-  void undo();
+  void undo(); //change pointers
+  void registerAction();
 
   void printStudents();
   void printFaculty();
@@ -29,11 +30,14 @@ public:
 
   void updateAdvisor(int student, int newAdvisor);
   void removeAdvisee(int student, int advisor);
-*/
+
 private:
-  fstream studentTable;
-  fstream facultyTable;
-  BST<Student> studentTree;
-  BST<Faculty> facultyTree;
-  //GenStack<BST<Student>> //stack of past tables somehow
+  ifstream studentIn;
+  ofstream studentOut;
+  ifstream facultyIn;
+  ofstream facultyOut;
+  BST<Student*> *studentTree;
+  BST<Faculty*> *facultyTree;
+  TDLL<BST<Student>*> studentTables; //stack of past tables somehow
+  TDLL<BST<Faculty>*> facultyTables;
 };

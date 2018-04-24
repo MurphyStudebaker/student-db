@@ -6,16 +6,16 @@ Student::Student()
   studentID = 0;
   advisorID = 0;
   gpa = 0.0;
-  name = "";
-  level = "";
+  name = "null";
+  level = "null";
 }
 Student::Student(int id)
 {
   studentID = id;
   advisorID = 0;
   gpa = 0.0;
-  name = "";
-  level = "";
+  name = "null";
+  level = "null";
 }
 Student::~Student()
 {

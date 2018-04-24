@@ -60,6 +60,9 @@ public:
 	void printTree();
 	Node<T>* getSuccessor(Node<T> *d);
 
+	void save(ofstream& file, Node<T>* node);
+	void saveTree(ofstream& file);
+
 private:
 	Node<T> *root;
 	unsigned int size;
@@ -72,6 +75,7 @@ BST<T>::BST()
 template <class T>
 BST<T>::~BST()
 {
+	cout << "BST deleted" << endl;
 	// Iterate and deletes
 	// Build character along the way
 }
@@ -291,4 +295,21 @@ Node<T>* BST<T>::getSuccessor(Node<T> *d) // d represents the node that we are g
 		successor->right = d->right;
 	}
 	return successor;
+}
+
+template <class T>
+void BST<T>::save(ofstream& file, Node<T>* node)
+{
+	if (node == NULL)
+	{
+		return;
+	}
+	save(file, node->left);
+	node->data->save(file);
+	save(file, node->right);
+}
+template <class T>
+void BST<T>::saveTree(ofstream& file)
+{
+	save(file, root);
 }

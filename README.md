@@ -18,3 +18,5 @@ SOURCES USED:
 (http://www.eecs.umich.edu/courses/eecs380/HANDOUTS/cppBinaryFileIO-2.html)
 3. Trouble shooting an ifstream and ofstream error
 (https://stackoverflow.com/questions/12432952/why-is-my-fstream-being-implicitly-deleted)
+4. Calling an object's method from a pointer
+(http://www.cplusplus.com/forum/general/67873/)

@@ -6,19 +6,23 @@ using namespace std;
 Faculty::Faculty()
 {
   facultyID = 0;
-  name = "";
-  level = "";
-  department = "";
+  name = "null";
+  level = "null";
+  department = "null";
   numAdvisees = 0;
 }
 Faculty::~Faculty()
 {
   cout << "Faculty deleted" << endl;
+  for (int i=0; i < numAdvisees; ++i)
+  {
+    advisees.removeFront();
+  }
 }
 
 ostream& operator<<(ostream& os, const Faculty& f)
 {
-    os << f.facultyID << "   " << f.name << "   " << f.level << "   " << f.department << f.printAdvisees();
+    os << f.facultyID << "   " << f.name << "   " << f.level << "   " << f.department;
     return os;
 }
 
@@ -86,10 +90,12 @@ void Faculty::load(ifstream& file)
   file >> department;
   file >> numAdvisees;
   int number = 0;
-  for (int i=0; i < numAdvisees; ++i)
+  if (numAdvisees > 0)
   {
-    file >> number;
-    advisees.addFront(number);
-    cout << "Advisee loaded and added" << endl;
+    for (int i=0; i < numAdvisees; ++i)
+    {
+      file >> number;
+      advisees.addFront(number);
+    }
   }
 }

@@ -1,6 +1,6 @@
 400
-Mr. Teacher
+Teacher
 Adjunct
-Comp Sci
+CompSci
 1
 1878547

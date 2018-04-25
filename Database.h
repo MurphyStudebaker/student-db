@@ -22,9 +22,9 @@ public:
   void findAdvisor(int id); //id of student
   void findAdvisees(int id); //id of faculty, print all advisees
 
-  void addStudent(Student s); //info input from menu class, generate id in implementation
+  void addStudent(Student *s); //info input from menu class, generate id in implementation
   void deleteStudent(int id);
-  void addFaculty(Faculty f); //same as add student
+  void addFaculty(Faculty *f); //same as add student
   void deleteFaculty(int id);
 
   void updateAdvisor(int student, int newAdvisor);

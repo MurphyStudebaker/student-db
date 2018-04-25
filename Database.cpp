@@ -110,3 +110,34 @@ void Database::findAdvisees(int id)
     adv.removeFront();
   }
 }
+
+void Database::addStudent(Student *s)
+{
+  int key = generateID(true);
+  s->setID(key);
+  studentTree->insert(key, s);
+}
+void Database::deleteStudent(int id)
+{
+  if (studentTree->contains(id))
+  {
+    studentTree->deleteNode(id);
+  }
+  else
+    cout << "Error: No student with that ID exists in database." << endl;
+}
+void Database::addFaculty(Faculty *f)
+{
+  int key = generateID(false);
+  f->setID(key);
+  facultyTree->insert(key, f);
+}
+void Database::deleteFaculty(int id)
+{
+  if (facultyTree->contains(id))
+  {
+    facultyTree->deleteNode(id);
+  }
+  else
+    cout << "Error: No faculty with that ID exists in database." << endl;
+}

@@ -61,8 +61,8 @@ bool Faculty::rmvAdvisee(int id)
   }
 }
 
-void Faculty::printAdvisees() {
-  advisees.printList();
+TDLL<int> Faculty::getAdvisees() {
+  return advisees;
 }
 /**The save method writes all member variables of an object out to the param fstream.*/
 void Faculty::save(ofstream& file)
@@ -72,13 +72,10 @@ void Faculty::save(ofstream& file)
   file << level << "\n";
   file << department << "\n";
   file << numAdvisees << "\n";
-  cout << "Saving " << numAdvisees << "advisee IDs" << endl;
   for (int i=0; i < numAdvisees; ++i)
   {
-    cout << "Number: " << i << endl;
     file << advisees.front() << "\n";
     advisees.removeFront();
-    cout << "Advisee saved and removed" << endl;
   }
 }
 

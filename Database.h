@@ -14,7 +14,6 @@ public:
   int generateID(bool isStudent); //true if student, false if faculty
   void save();
   void undo(); //change pointers
-  void registerAction();
 
   void printStudents();
   void printFaculty();

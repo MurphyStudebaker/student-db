@@ -29,7 +29,6 @@ Database::Database()
     {
       Faculty *loadedFaculty = new Faculty;
       loadedFaculty->load(facultyIn);
-      cout << loadedFaculty << endl;
       if (loadedFaculty->getID() != 0) //prevent
       {
         facultyTree->insert(loadedFaculty->getID(), loadedFaculty);
@@ -41,17 +40,23 @@ Database::Database()
 
 Database::~Database()
 {
-  facultyOut.open("facultyTable.txt");
-  facultyTree->saveTree(facultyOut);
-  facultyOut.close();
-  studentOut.open("studentTable.txt");
-  studentTree->saveTree(studentOut);
-  studentOut.close();
+//  if (!facultyTree->isEmpty())
+//  {
+    facultyOut.open("facultyTable.txt");
+    facultyTree->saveTree(facultyOut);
+    facultyOut.close();
+//  }
+//  if (!studentTree->isEmpty())
+//  {
+    studentOut.open("studentTable.txt");
+    studentTree->saveTree(studentOut);
+    studentOut.close();
+//  }
   delete studentTree;
   delete facultyTree;
 }
-/*
-int generateID(bool isStudent)
+
+int Database::generateID(bool isStudent)
 {
   int theID = 0;
   if (isStudent)
@@ -59,17 +64,21 @@ int generateID(bool isStudent)
     while (true)
     {
       //generate ID between 10000 and 50000
-      if (!studentTree.contains(theID)) //no other student has this ID
+      theID = 10000 + (rand() % int(50000 - 10000+1));
+      if (!studentTree->contains(theID)) //no other student has this ID
+        break;
+    }
+  } else {
+    while (true)
+    {
+      theID = 50000 + (rand() % int(100000 - 50000+1));
+      if (!facultyTree->contains(theID)) //no other faculty has this ID
         break;
     }
   }
-  else {
-    //generate ID between 50000 and 100000
-    //check tree to make sure it is unique
-  }
   return theID;
 }
-*/
+
 void Database::printStudents()
 {
   studentTree->printTree();
@@ -77,4 +86,27 @@ void Database::printStudents()
 void Database::printFaculty()
 {
   facultyTree->printTree();
+}
+
+void Database::findStudent(int id)
+{
+  cout << studentTree->fetch(id) << endl;
+}
+void Database::findFaculty(int id)
+{
+  cout << facultyTree->fetch(id) << endl;
+}
+void Database::findAdvisor(int id)
+{
+  int advisorID = studentTree->fetch(id)->getAdvisor();
+ cout << facultyTree->fetch(advisorID) << endl;
+}
+void Database::findAdvisees(int id)
+{
+  TDLL<int> adv = facultyTree->fetch(id)->getAdvisees();
+  while (!adv.isEmpty())
+  {
+    cout << studentTree->fetch(adv.front()) << endl;
+    adv.removeFront();
+  }
 }

@@ -51,6 +51,8 @@ public:
 	bool contains(int k);
 	bool deleteNode(int k);
 
+	T fetch(int k);
+
 	Node<T> *getMin();
 	Node<T> *getMax();
 
@@ -276,6 +278,30 @@ bool BST<T>::deleteNode(int k)
 	}
 	return true;
 }
+
+template <class T>
+T BST<T>::fetch(int k)
+{
+	Node<T> *curr = root;
+	while (curr->key != k)
+	{
+		if (k < curr->key) // Go left
+		{
+			curr = curr->left;
+		}
+		else // Go right
+		{
+			curr = curr->right;
+		}
+		if (curr == NULL) // Did not find it
+		{
+			cout << "Could not locate student" << endl;
+			return nullptr;
+		}
+	} //found a match
+	return curr->data;
+}
+
 template <class T>
 Node<T>* BST<T>::getSuccessor(Node<T> *d) // d represents the node that we are going to delete
 {

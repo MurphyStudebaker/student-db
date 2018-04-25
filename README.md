@@ -20,3 +20,5 @@ SOURCES USED:
 (https://stackoverflow.com/questions/12432952/why-is-my-fstream-being-implicitly-deleted)
 4. Calling an object's method from a pointer
 (http://www.cplusplus.com/forum/general/67873/)
+5. Using rand() within a range
+(https://stackoverflow.com/questions/5008804/generating-random-integer-from-a-range)

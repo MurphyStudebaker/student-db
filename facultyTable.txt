@@ -1,6 +1,0 @@
-400
-Teacher
-Adjunct
-CompSci
-1
-1878547

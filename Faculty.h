@@ -21,11 +21,11 @@ public:
 
   void addAdvisee(int id);
   bool rmvAdvisee(int id); //returns true if student found and successfully removed
-  void printAdvisees();
+  TDLL<int> getAdvisees();
 
   void save(ofstream& file);
   void load(ifstream& file);
-  
+
 private:
   int facultyID;
   string name;

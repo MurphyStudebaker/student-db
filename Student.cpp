@@ -9,13 +9,13 @@ Student::Student()
   name = "null";
   level = "null";
 }
-Student::Student(int id)
+Student::Student(int id, string name, string level, double gpa, int advID)
 {
   studentID = id;
-  advisorID = 0;
-  gpa = 0.0;
-  name = "null";
-  level = "null";
+  advisorID = advID;
+  gpa = gpa;
+  name = name;
+  level = level;
 }
 Student::~Student()
 {
@@ -29,6 +29,10 @@ ostream& operator<<(ostream& os, const Student& s)
     return os;
 }
 
+void Student::print()
+{
+  cout << studentID << "   " << name << "   " << level << "   " << gpa << "   " << advisorID << endl;
+}
 /** Accessors and Mutators */
 void Student::setID(int i)
 { studentID = i; }

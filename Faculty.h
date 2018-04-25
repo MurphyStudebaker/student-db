@@ -6,6 +6,7 @@ using namespace std;
 class Faculty {
 public:
   Faculty();
+  Faculty(int id, string name, string level, string department);
   ~Faculty();
 
   friend ostream& operator<<(ostream& os, const Faculty& s);
@@ -25,7 +26,7 @@ public:
 
   void save(ofstream& file);
   void load(ifstream& file);
-
+  void print();
 private:
   int facultyID;
   string name;

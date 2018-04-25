@@ -95,7 +95,7 @@ void BST<T>::print(Node<T> *node) // In-order traversal
 		return;
 	}
 	print(node->left);
-	cout << node->data << endl;
+	node->data->print();
 	print(node->right);
 }
 template <class T>

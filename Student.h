@@ -7,7 +7,7 @@ class Student
 {
 public:
   Student();
-  Student(int id);
+  Student(int id, string name, string level, double gpa, int advisorID);
   ~Student();
   friend ostream& operator<<(ostream& os, const Student& s);
 
@@ -24,6 +24,7 @@ public:
 
   void save(ofstream& file);
   void load(ifstream& file);
+  void print();
 
 private:
   int studentID;

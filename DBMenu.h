@@ -1,6 +1,4 @@
 #include "Database.h"
-#include "Student.h"
-#include "Faculty.h"
 #include <iostream>
 using namespace std;
 /** Handles all user I/O for menu printing, user selection, and user input */
@@ -14,5 +12,5 @@ public:
   Student* studentInfo(); //prompts for adding a new student if selected
   Faculty* facultyInfo(); //prompts for adding new faculty if selected
 private:
-  Database db;
+  Database *db;
 };

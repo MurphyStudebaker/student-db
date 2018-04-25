@@ -12,58 +12,59 @@ DBMenu::~DBMenu()
 
 void DBMenu::init()
 {
+  int response = 0;
   while (true)
-    int response = 0;
+  {
     printMenu();
     cin >> response;
     if (response == 1) {
-      db.printStudents();
+      db->printStudents();
     } else if (response == 2) {
-        db.printFaculty();
+        db->printFaculty();
     } else if (response == 3) {
         cout << "Enter the Student's ID:" << endl;
         int id = 0;
         cin >> id;
-        db.findStudent(id);
+        db->findStudent(id);
     } else if (response == 4) {
         cout << "Enter the Faculty ID:" << endl;
         int id = 0;
         cin >> id;
-        db.findFaculty(id);
+        db->findFaculty(id);
     } else if (response == 5) {
         cout << "Enter the student's ID: " << endl;
         int id = 0;
         cin >> id;
-        db.findAdvisor(id);
+        db->findAdvisor(id);
     } else if (response == 6) {
         cout << "Enter the Faculty ID:" << endl;
         int id = 0;
         cin >> id;
-        db.findAdvisees(id);
+        db->findAdvisees(id);
     } else if (response == 7) {
         Student *newStudent = studentInfo();
-        db.addStudent(newStudent);
+        db->addStudent(newStudent);
     } else if (response == 8) {
         cout << "Enter the student's ID: " << endl;
         int id = 0;
         cin >> id;
-        db.deleteStudent(id);
-    } else if (repsonse == 9) {
+        db->deleteStudent(id);
+    } else if (response == 9) {
         Faculty *newFac = facultyInfo();
-        db.addFaculty();
+        db->addFaculty(newFac);
     } else if (response == 10) {
         cout << "Enter the Faculty ID:" << endl;
         int id = 0;
         cin >> id;
-        db.deleteFaculty(id);
-    } else if (response == 11) {
+        db->deleteFaculty(id);
+    } /*else if (response == 11) {
         cout << "Enter the student's ID: " << endl;
         int sid = 0;
         cin >> sid;
         cout << "Enter the Faculty ID:" << endl;
         int fid = 0;
         cin >> fid;
-        db.updateAdvisor(sid, fid);
+        db->updateAdvisor(sid, fid);
     } else if (response == 12) {
         cout << "Enter the Faculty ID:" << endl;
         int fid = 0;
@@ -71,33 +72,34 @@ void DBMenu::init()
         cout << "Enter the student's ID: " << endl;
         int sid = 0;
         cin >> sid;
-        db.removeAdvisee(sid, fid);
-    } else if (response == 13) {
-        db.undo();
-    } else if (response == 14) {
+        db->removeAdvisee(sid, fid);
+    }  else if (response == 13) {
+        db->undo();
+    } */ else if (response == 14) {
       break;
     } else {
       cout << "Error: Invalid Selection. Please choose again." << endl;
     }
+  }
 }
 void DBMenu::printMenu()
 {
-  cout << "1. Print all students\n
-            2. Print all faculty\n
-            3. Look up student by ID\n
-            4. Look up faculty by ID\n
-            5. Look up a student's advisor\n
-            6. Look up a faculty member's advisees\n
-            7. Add a new student\n
-            8. Delete a student\n
-            9. Add a new faculty member\n
-            10. Delete a faculty member\n
-            11. Change a student’s advisor\n
-            12. Remove an advisee from a faculty member\n
-            13. Rollback\n
-            14. Exit" << endl;
+  cout << "1. Print all students" << endl <<
+          "2. Print all faculty" << endl <<
+          "3. Look up student by ID" << endl <<
+          "4. Look up faculty by ID" << endl <<
+          "5. Look up a student's advisor" << endl <<
+          "6. Look up a faculty member's advisees" << endl <<
+          "7. Add a new student" << endl <<
+          "8. Delete a student" << endl <<
+          "9. Add a new faculty member" << endl <<
+          "10. Delete a faculty member" << endl <<
+          "11. Change a student’s advisor" << endl <<
+          "12. Remove an advisee from a faculty member" << endl <<
+          "13. Rollback" << endl <<
+          "14. Exit" << endl;
 }
-void DBMenu::studentInfo()
+Student* DBMenu::studentInfo()
 {
   string name, level;
   double gpa;
@@ -110,10 +112,10 @@ void DBMenu::studentInfo()
   cin >> gpa;
   cout << "ID of faculty advisor: " << endl;
   cin >> advisor;
-  Student *newStudent = new Student(db.generateID(true), name, level, gpa, advisor);
+  Student *newStudent = new Student(db->generateID(true), name, level, gpa, advisor);
   return newStudent;
 }
-void DBMenu::facultyInfo()
+Faculty* DBMenu::facultyInfo()
 {
   string name, level, department;
   cout << "Name: " << endl;
@@ -122,6 +124,6 @@ void DBMenu::facultyInfo()
   cin >> level;
   cout << "Department Code: (CPSC, ENG, FP)" << endl;
   cin >> department;
-  Faculty *newFac = new Faculty(db.generateID(false), name, level, department);
+  Faculty *newFac = new Faculty(db->generateID(false), name, level, department);
   return newFac;
 }

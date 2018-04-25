@@ -11,6 +11,14 @@ Faculty::Faculty()
   department = "null";
   numAdvisees = 0;
 }
+Faculty::Faculty(int id, string name, string level, string department)
+{
+  facultyID = id;
+  name = name;
+  level = level;
+  department = department;
+  numAdvisees = 0;
+}
 Faculty::~Faculty()
 {
   cout << "Faculty deleted" << endl;
@@ -43,6 +51,11 @@ string Faculty::getLevel()
 { return level; }
 string Faculty::getDep()
 { return department; }
+
+void Faculty::print()
+{
+  cout << facultyID << "   " << name << "   " << level << "   " << department << endl;
+}
 
 void Faculty::addAdvisee(int id)
 {

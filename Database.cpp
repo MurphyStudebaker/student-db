@@ -135,9 +135,46 @@ void Database::addFaculty(Faculty *f)
 void Database::deleteFaculty(int id)
 {
   if (facultyTree->contains(id))
-  {
+  {/*
+    TDLL<int> advisees = facultyTree->fetch(id)->getAdvisees();
+    int i = 0;
+    while (!advisees.isEmpty()) //set advisees' advisor to the mins and maxs
+    {
+      int newAdvisor = 0;
+      if (i%2 > 0)
+      {
+        newAdvisor = (facultyTree->getMin())->data->getID();
+      } else {
+        newAdvisor = (facultyTree->getMax())->data->getID();
+      }
+      studentTree->fetch(advisees.front())->setAdvisor(newAdvisor);
+      advisees.removeFront();
+    }*/
     facultyTree->deleteNode(id);
   }
   else
     cout << "Error: No faculty with that ID exists in database." << endl;
+}
+void Database::updateAdvisor(int student, int newAdvisor)
+{
+  if (facultyTree->contains(newAdvisor))
+  {
+    studentTree->fetch(student)->setAdvisor(newAdvisor);
+  } else {
+    cout << "Error: That faculty ID is not in the database. " << endl;
+  }
+}
+void Database::removeAdvisee(int student, int advisor)
+{
+  if (studentTree->contains(student))
+  {
+    if (facultyTree->contains(advisor))
+    {
+      facultyTree->fetch(advisor)->rmvAdvisee(student);
+    } else {
+      cout << "Error faculty member does not exist in database." << endl;
+    }
+  } else {
+    cout << "Error: Student does not exist in database. " << endl;
+  }
 }

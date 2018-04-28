@@ -57,7 +57,7 @@ void DBMenu::init()
         int id = 0;
         cin >> id;
         db->deleteFaculty(id);
-    } /*else if (response == 11) {
+    } else if (response == 11) {
         cout << "Enter the student's ID: " << endl;
         int sid = 0;
         cin >> sid;
@@ -73,7 +73,7 @@ void DBMenu::init()
         int sid = 0;
         cin >> sid;
         db->removeAdvisee(sid, fid);
-    }  else if (response == 13) {
+    }  /*else if (response == 13) {
         db->undo();
     } */ else if (response == 14) {
       break;

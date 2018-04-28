@@ -19,6 +19,7 @@ public:
   void removeBack();
   void add(TNode<T>* v, const T& e);
   void remove(TNode<T>* v);
+//  void remove(T val);
   TNode<T>* find(T val);
   void printList();
 };

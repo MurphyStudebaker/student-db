@@ -90,23 +90,23 @@ void Database::printFaculty()
 
 void Database::findStudent(int id)
 {
-  cout << studentTree->fetch(id) << endl;
+  studentTree->fetch(id)->print();
 }
 void Database::findFaculty(int id)
 {
-  cout << facultyTree->fetch(id) << endl;
+  facultyTree->fetch(id)->print();
 }
 void Database::findAdvisor(int id)
 {
   int advisorID = studentTree->fetch(id)->getAdvisor();
- cout << facultyTree->fetch(advisorID) << endl;
+  facultyTree->fetch(advisorID)->print();
 }
 void Database::findAdvisees(int id)
 {
   TDLL<int> adv = facultyTree->fetch(id)->getAdvisees();
   while (!adv.isEmpty())
   {
-    cout << studentTree->fetch(adv.front()) << endl;
+    studentTree->fetch(adv.front())->print();
     adv.removeFront();
   }
 }

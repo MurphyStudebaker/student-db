@@ -9,13 +9,13 @@ Student::Student()
   name = "null";
   level = "null";
 }
-Student::Student(int id, string name, string level, double gpa, int advID)
+Student::Student(int id, string n, string l, double g, int advID)
 {
   studentID = id;
   advisorID = advID;
-  gpa = gpa;
-  name = name;
-  level = level;
+  gpa = g;
+  name = n;
+  level = l;
 }
 Student::~Student()
 {

@@ -113,6 +113,7 @@ Student* DBMenu::studentInfo()
   cout << "ID of faculty advisor: " << endl;
   cin >> advisor;
   Student *newStudent = new Student(db->generateID(true), name, level, gpa, advisor);
+  cout << "Students name is " << newStudent->getName() << endl;
   return newStudent;
 }
 Faculty* DBMenu::facultyInfo()

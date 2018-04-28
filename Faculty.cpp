@@ -11,12 +11,12 @@ Faculty::Faculty()
   department = "null";
   numAdvisees = 0;
 }
-Faculty::Faculty(int id, string name, string level, string department)
+Faculty::Faculty(int id, string n, string l, string d)
 {
   facultyID = id;
-  name = name;
-  level = level;
-  department = department;
+  name = n;
+  level = l;
+  department = d;
   numAdvisees = 0;
 }
 Faculty::~Faculty()

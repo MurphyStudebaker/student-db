@@ -1,12 +1,10 @@
 # student-db
-For Data Structures &amp; Algorithms
-
 Murphy Studebaker
 stude102@mail.chapman.edu
 Assignment 5 - Student Database
 
 KNOWN ERRORS:
-
+When the rollback function is called, students are duplicated.
 
 
 SOURCES USED:

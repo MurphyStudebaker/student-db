@@ -74,11 +74,8 @@ void Database::recordOperation()
 void Database::undo()
 {
   operationStack.removeFront();
-  cout << "front removed" << endl;
   studentTree = operationStack.front()->studentTree;
-  cout << "student tree reset" << endl;
   facultyTree = operationStack.front()->facultyTree;
-  cout << "faculty tree reset" << endl;
 }
 /** Generates a random ID for added students and faculty. If a student,
   * the ID is generated between 10000 and 50000. If a faculty member,

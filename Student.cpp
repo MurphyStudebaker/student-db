@@ -66,9 +66,12 @@ void Student::load(ifstream& file)
 /** Writes out member variables to the given output stream. */
 void Student::save(ofstream& file)
 {
-  file << studentID << "\n";
-  file << name << "\n";
-  file << level << "\n";
-  file << gpa << "\n";
-  file << advisorID << "\n";
+  if (studentID != 0)
+  {
+    file << studentID << "\n";
+    file << name << "\n";
+    file << level << "\n";
+    file << gpa << "\n";
+    file << advisorID << "\n";
+  }
 }

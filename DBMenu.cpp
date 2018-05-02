@@ -106,11 +106,11 @@ Student* DBMenu::studentInfo()
   int advisor;
   cout << "Name: " << endl;
   cin >> name;
-  cout << "Level: (Freshman, Sophomore, Junior, Sebior)" << endl;
+  cout << "Level: (Freshman, Sophomore, Junior, Senior)" << endl;
   cin >> level;
   cout << "GPA: " << endl;
   cin >> gpa;
-  cout << "ID of faculty advisor: " << endl;
+  cout << "ID of faculty advisor (Enter 0 if advisor is unknown): " << endl;
   cin >> advisor;
   Student *newStudent = new Student(db->generateID(true), name, level, gpa, advisor);
   return newStudent;

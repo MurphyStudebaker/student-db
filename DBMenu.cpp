@@ -73,9 +73,9 @@ void DBMenu::init()
         int sid = 0;
         cin >> sid;
         db->removeAdvisee(sid, fid);
-    }  /*else if (response == 13) {
+    }  else if (response == 13) {
         db->undo();
-    } */ else if (response == 14) {
+    } else if (response == 14) {
       break;
     } else {
       cout << "Error: Invalid Selection. Please choose again." << endl;

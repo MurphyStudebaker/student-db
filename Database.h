@@ -12,8 +12,10 @@ public:
   ~Database(); //serialize to final
 
   int generateID(bool isStudent); //true if student, false if faculty
+  void load();
   void save();
   void undo(); //change pointers
+  void recordOperation(); //add pointer to stack
 
   void printStudents();
   void printFaculty();
@@ -37,6 +39,5 @@ private:
   ofstream facultyOut;
   BST<Student*> *studentTree;
   BST<Faculty*> *facultyTree;
-  TDLL<BST<Student>*> studentTables; //stack of past tables somehow
-  TDLL<BST<Faculty>*> facultyTables;
+  TDLL<Database*> operationStack;
 };

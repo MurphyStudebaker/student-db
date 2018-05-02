@@ -46,7 +46,6 @@ class BST
 public:
 	BST();
 	~BST();
-
 	void insert(int k, T d);
 	bool contains(int k);
 	bool deleteNode(int k);
@@ -81,6 +80,7 @@ BST<T>::~BST()
 	// Iterate and deletes
 	// Build character along the way
 }
+
 template <class T>
 void BST<T>::printTree()
 {

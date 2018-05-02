@@ -2,7 +2,8 @@
 #include <fstream>
 #include "TDLL.h"
 using namespace std;
-
+/** The Faculty class contains accessor and mutator methods for all member variables
+  * and the ability to save and load to and from a text file. */
 class Faculty {
 public:
   Faculty();

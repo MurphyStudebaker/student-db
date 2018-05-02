@@ -54,7 +54,7 @@ string Student::getLevel()
 { return level; }
 double Student::getGPA()
 { return gpa; }
-
+/** Loads in member variables from the given input stream. */
 void Student::load(ifstream& file)
 {
   file >> studentID;
@@ -63,7 +63,7 @@ void Student::load(ifstream& file)
   file >> gpa;
   file >> advisorID;
 }
-
+/** Writes out member variables to the given output stream. */
 void Student::save(ofstream& file)
 {
   file << studentID << "\n";

@@ -1,22 +1,23 @@
 #include "Database.h"
 using namespace std;
-/** The Database constructor searches for input faculty and student files within the
-  * directory. If found, the constructor loads in these files to set up the database.
-  * If the files do not exist or cannot be read, the Databse initializes blank tables. */
+/** Creates new instances of the data tables and loads in the information from file.*/
 Database::Database()
 {
   studentTree = new BST<Student*>;
   facultyTree = new BST<Faculty*>;
   load();
 }
-
+/** Saves both data tables to a file before deleting the pointers. */
 Database::~Database()
 {
+  save();
   delete studentTree;
   delete facultyTree;
-  save();
 }
 
+/** Reads in information for the student and faculty data tables from two text files.
+  * If using your own text files, they must be located within this directory and
+  * named studentTable.txt and facultyTable.txt */
 void Database::load()
 {
   studentIn.open("studentTable.txt");
@@ -47,7 +48,7 @@ void Database::load()
   }
   facultyIn.close();
 }
-
+/** Writes the content of each data table to file. */
 void Database::save()
 {
   studentOut.open("studentTable.txt");
@@ -58,22 +59,30 @@ void Database::save()
   facultyOut.close();
 }
 
+/* This method must be called after each manipulation operation to enable
+ * the undo method. It saves the current tables to file and adds a copy of
+ * both tables to the operation stack. */
 void Database::recordOperation()
 {
   save();
-  Database *newDB;
+  Database *newDB = new Database;
   newDB->load();
   operationStack.addFront(newDB);
 }
-
+/* Removes the most recent operation from the stack and resets both data tables
+ * to their previous state. */
 void Database::undo()
 {
   operationStack.removeFront();
+  cout << "front removed" << endl;
   studentTree = operationStack.front()->studentTree;
+  cout << "student tree reset" << endl;
   facultyTree = operationStack.front()->facultyTree;
-  recordOperation();
+  cout << "faculty tree reset" << endl;
 }
-
+/** Generates a random ID for added students and faculty. If a student,
+  * the ID is generated between 10000 and 50000. If a faculty member,
+  * the ID is generated between 50001 and 100000. */
 int Database::generateID(bool isStudent)
 {
   int theID = 0;
@@ -89,7 +98,7 @@ int Database::generateID(bool isStudent)
   } else {
     while (true)
     {
-      theID = 50000 + (rand() % int(100000 - 50000+1));
+      theID = 50001 + (rand() % int(100000 - 50000+1));
       if (!facultyTree->contains(theID)) //no other faculty has this ID
         break;
     }
@@ -97,6 +106,8 @@ int Database::generateID(bool isStudent)
   return theID;
 }
 
+/** These are simple look up methods that print the information of either all
+  * or specific students and faculty given their ID. */
 void Database::printStudents()
 {
   studentTree->printTree();
@@ -105,7 +116,6 @@ void Database::printFaculty()
 {
   facultyTree->printTree();
 }
-
 void Database::findStudent(int id)
 {
   studentTree->fetch(id)->print();
@@ -129,6 +139,8 @@ void Database::findAdvisees(int id)
   }
 }
 
+/** Add and delete functions for students and faculty. If a new student
+  * or faculty member is added, an ID is generated for them. */
 void Database::addStudent(Student *s)
 {
   int key = generateID(true);
@@ -173,6 +185,7 @@ void Database::deleteFaculty(int id)
     cout << "Error: No faculty with that ID exists in database." << endl;
 }
 
+/** Updates the advisor of the given student to the given faculty member. */
 void Database::updateAdvisor(int student, int newAdvisor)
 {
   if (facultyTree->contains(newAdvisor))
@@ -184,6 +197,7 @@ void Database::updateAdvisor(int student, int newAdvisor)
   }
 }
 
+/**Removes a given student from the given faculty member's list of advisees.*/
 void Database::removeAdvisee(int student, int advisor)
 {
   if (studentTree->contains(student))

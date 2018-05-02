@@ -2,7 +2,8 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-
+/** The Student class contains accessor and mutator methods for all member variables
+  * and the ability to save and load to and from a text file. */
 class Student
 {
 public:

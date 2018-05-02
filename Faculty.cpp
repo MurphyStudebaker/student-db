@@ -28,6 +28,7 @@ Faculty::~Faculty()
   }
 }
 
+/** Overrides the << operator so Faculty can be printed easily. */
 ostream& operator<<(ostream& os, const Faculty& f)
 {
     os << f.facultyID << "   " << f.name << "   " << f.level << "   " << f.department;
@@ -51,6 +52,9 @@ string Faculty::getLevel()
 { return level; }
 string Faculty::getDep()
 { return department; }
+TDLL<int> Faculty::getAdvisees() {
+  return advisees;
+}
 
 void Faculty::print()
 {
@@ -74,10 +78,7 @@ bool Faculty::rmvAdvisee(int id)
   }
 }
 
-TDLL<int> Faculty::getAdvisees() {
-  return advisees;
-}
-/**The save method writes all member variables of an object out to the param fstream.*/
+/**The save method writes all member variables of an object out to the output stream. */
 void Faculty::save(ofstream& file)
 {
   file << facultyID << "\n";
@@ -85,13 +86,16 @@ void Faculty::save(ofstream& file)
   file << level << "\n";
   file << department << "\n";
   file << numAdvisees << "\n";
-  for (int i=0; i < numAdvisees; ++i)
+  if (numAdvisees > 0)
   {
-    file << advisees.front() << "\n";
-    advisees.removeFront();
+    for (int i=0; i < numAdvisees; ++i)
+    {
+      file << advisees.front() << "\n";
+      advisees.removeFront();
+    }
   }
 }
-
+/** Loads in all information from a given input stream. */
 void Faculty::load(ifstream& file)
 {
   file >> facultyID;
